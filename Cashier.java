@@ -6,7 +6,7 @@ public class Cashier extends User {
         this.employeeID = employeeID;
     }
 
-    public void displayCashierMenu() {
+    public void displayMenu() {
         System.out.println("\n=====================================");
         System.out.println("CASHIER: " + getName().toUpperCase());
         System.out.println("ID: " + employeeID);
@@ -22,4 +22,5 @@ public class Cashier extends User {
         System.out.println("Assisting booking for: " + showtime.getMovieStart());
         System.out.println("Available Seats: " + showtime.availableSeats());
     }
+
 }
