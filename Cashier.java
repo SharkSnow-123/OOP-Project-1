@@ -1,4 +1,3 @@
-// Assumes Person 1's class is named 'User'
 public class Cashier extends User {
     private String employeeID;
 
