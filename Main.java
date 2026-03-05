@@ -60,7 +60,7 @@ public class Main {
                     }else {
             
                         if (currentUser instanceof Cashier) {
-                            ((Cashier) currentUser).handleMenu(action, dailyReport, currentShowtime);
+                            ((Cashier) currentUser).handleMenu(action, dailyReport, currentShowtime, sc);
                         }
                     }
                 }

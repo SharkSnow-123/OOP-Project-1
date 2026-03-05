@@ -20,8 +20,8 @@ public class Cashier extends User {
         System.out.println("4. Back to Main");
     }
 
-    public void handleMenu(int choice, SalesReport report, Showtime showtime) {
-        Scanner sc = new Scanner(System.in);
+    public void handleMenu(int choice, SalesReport report, Showtime showtime, Scanner sc) {
+        //Scanner sc = new Scanner(System.in);
         double ticketPrice = 350.00; 
 
         switch (choice) {
@@ -77,5 +77,6 @@ public class Cashier extends User {
             default:
                 System.out.println("Invalid option.");
         }
+    
     }
 }
