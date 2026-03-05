@@ -28,6 +28,22 @@ class Cinema {
         }
         return copy;
     }
+
+    public void displayMovies() {
+        System.out.println("=====================================");
+        System.out.println("     MOVIES TODAY (Movie class)");
+        System.out.println("=====================================");
+
+        Showtime[] showtimes = getShowtimes();
+        for (int i = 0; i < showtimes.length; i++) {
+            if (showtimes[i] != null) {
+                System.out.println((i + 1) + ". " + showtimes[i].getMovie());
+                System.out.println("   Showtimes (Showtime class):");
+                System.out.println("   " + showtimes[i]);
+            }
+        }
+        System.out.println("------------------------------------");
+    }
     
     public String getName() { 
         return cinemaName + " - " + roomName; 
