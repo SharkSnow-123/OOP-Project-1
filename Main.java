@@ -45,20 +45,33 @@ public class Main {
             }
 
             if (currentUser != null) {
-                
+
                 boolean inSubMenu = true;
                 while (inSubMenu) {
 
-                    currentUser.displayMenu(); 
+                    currentUser.displayMenu();
                     System.out.print("Enter Action: ");
                     int action = sc.nextInt();
 
                     if (action == 4) {
+                        inSubMenu = false;
+                    } else {
+                        if (currentUser instanceof Customer) {
+                            if (action == 1) {
+                                
+                                Cinema cinema1 = new Cinema("SM Cinema Cebu", "Room 1", 100);
+                                Movie avengers = new Movie("Avengers", "Action", 150, 250.0);
+                                Movie spiderman = new Movie("Spider-Man", "Action", 130, 220.0);
 
-                        inSubMenu = false; 
+                                Showtime avengers7pm = new Showtime(avengers, cinema1, "7:00 PM", 100);
+                                Showtime spiderman9pm = new Showtime(spiderman, cinema1, "9:30 PM", 100);
 
-                    }else {
-            
+                                cinema1.addShowtime(avengers7pm);
+                                cinema1.addShowtime(spiderman9pm);
+                                cinema1.displayMovies();
+
+                            }
+                        }
                         if (currentUser instanceof Cashier) {
                             ((Cashier) currentUser).handleMenu(action, dailyReport, currentShowtime, sc);
                         }
