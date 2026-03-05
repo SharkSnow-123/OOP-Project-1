@@ -30,21 +30,7 @@ class Customer extends User {
 
 }
 
-class Cashier extends User {
 
-    public Cashier(String id, String name) {
-        super(id, name);
-    }
-
-    public void displayMenu() {
-        System.out.println("--- CASHIER SYSTEM ---");
-        System.out.println("1. Process Customer Booking");
-        System.out.println("2. Quick Book (name + seats)");
-        System.out.println("3. View Today's Sales");
-        System.out.println("4. Back to Main");
-    }
-
-}
 
 class Admin extends User {
 
