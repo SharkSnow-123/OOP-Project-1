@@ -1,15 +1,25 @@
 public abstract class User {
     private String name;
 
+    //Constructors
     public User(String name) {
-        this.name = name;
+        setName(name);
     }
 
+    
+    //Setters
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    
+    //getters
     public String getName() {
         return name;
     }
 
 
+    //Methods
     public abstract void displayMenu();
 
 }
