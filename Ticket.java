@@ -3,14 +3,12 @@ public class Ticket {
     private String movieName;
     private Showtime showtime;
     private Seat seat;
-    private double price;
 
-    public Ticket(String ticketId, String movieName, Showtime showtime, Seat seat, double price) {
+    public Ticket(String ticketId, String movieName, Showtime showtime, Seat seat) {
         this.ticketId = ticketId;
         this.movieName = movieName;
         this.showtime = showtime;
         this.seat = seat;
-        this.price = price;
     }
 
     public String getTicketId() {
@@ -45,19 +43,10 @@ public class Ticket {
         this.seat = seat;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public void printTicket() {
         System.out.println("Ticket ID: " + ticketId);
         System.out.println("Movie: " + movieName);
         System.out.println("Time: " + showtime.getMovieStart());
         System.out.println("Seat: " + seat.getSeatNumber());
-        System.out.println("Price: " + price);
     }
 }
