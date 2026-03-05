@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class SalesReport {
     private double totalRevenue;
     private int ticketsSold;

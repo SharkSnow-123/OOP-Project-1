@@ -32,7 +32,7 @@ class Main {
                 break;
 
             case 2:
-                currentUser = new Cashier("Cyrus");
+                currentUser = new Cashier("Cyrus", "E101");
                 break;
 
             case 3:
