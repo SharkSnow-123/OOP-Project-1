@@ -1,9 +1,7 @@
 public abstract class User {
-    private String id;
     private String name;
 
-    public User(String id, String name) {
-        this.id = id;
+    public User(String name) {
         this.name = name;
     }
 
@@ -11,9 +9,6 @@ public abstract class User {
         return name;
     }
 
-    public String getId() {
-        return id;
-    }
 
     public abstract void displayMenu();
 
@@ -21,8 +16,8 @@ public abstract class User {
 
 class Customer extends User {
 
-    public Customer(String id, String name) {
-        super(id, name);
+    public Customer(String name) {
+        super(name);
     }
 
     @Override
@@ -40,8 +35,8 @@ class Customer extends User {
 
 class Admin extends User {
 
-    Admin(String id, String name) {
-        super(name, id);
+    Admin (String name) {
+        super(name);
     }
 
     public void displayMenu() {
