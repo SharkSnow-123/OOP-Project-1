@@ -1,3 +1,5 @@
+import java.util.List;
+
 public abstract class User {
     private String name;
 
@@ -16,9 +18,15 @@ public abstract class User {
     public abstract void displayMenu();
 }
 
+/////////////////////////////////////////////////////////////////////////////////////
+
 class Customer extends User {
-    public Customer(String name, String id) {
-        super(name); 
+
+    private boolean isSeniorOrPWD;
+
+    public Customer(String name, boolean isSeniorOrPWD) {
+        super(name);
+        this.isSeniorOrPWD = isSeniorOrPWD;
     }
 
     @Override
@@ -30,16 +38,47 @@ class Customer extends User {
     }
 }
 
+//////////////////////////////////////////////////////////
+
 class Admin extends User {
-    public Admin(String name, String id) {
+
+    Admin(String name) {
         super(name);
     }
 
-    @Override
     public void displayMenu() {
-        System.out.println("--- ADMIN DASHBOARD ---");
-        System.out.println("Total tickets: ");
-        System.out.println("Total Revenue: ");
-        System.out.println(" "); 
+        System.out.println("\n=====================================");
+        System.out.println("ADMIN DASHBOARD: " + getName().toUpperCase());
+        System.out.println("=====================================");
+        System.out.println("1. View Total Revenue");
+        System.out.println("2. View All Sold Tickets");
+        System.out.println("3. Back to Main");
+    }
+
+    public void handleMenu(int choice, SalesReport report, List<Ticket> allTickets) {
+        switch (choice) {
+            case 1:
+                report.displayDailyReport();
+                break;
+
+            case 2:
+                System.out.println("\n--- ALL SOLD TICKETS ---");
+                if (allTickets.isEmpty()) {
+                    System.out.println("No tickets have been sold yet.");
+                } else {
+                    for (Ticket t : allTickets) {
+                        t.printTicket();
+                        System.out.println("----------------------");
+                    }
+                }
+                break;
+
+            case 3:
+                System.out.println("Exiting Admin Dashboard...");
+                break;
+
+            default:
+                System.out.println("Invalid Operation!");
+        }
     }
 }

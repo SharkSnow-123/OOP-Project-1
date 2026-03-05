@@ -1,4 +1,7 @@
 public class SalesReport {
+
+    Payment payment;
+
     private double totalRevenue;
     private int ticketsSold;
     private String reportDate;
@@ -19,6 +22,14 @@ public class SalesReport {
         this.ticketsSold++;
     }
 
+    public double overallRevenue() {
+        return totalRevenue += payment.getTotalAmount();
+    }
+
+    public int totalTickets() {
+        return ticketsSold;
+    }
+
     public void displayDailyReport() {
         System.out.println("\n=====================================");
         System.out.println("DAILY REPORT (" + reportDate + ")");
@@ -29,3 +40,4 @@ public class SalesReport {
         System.out.println("=====================================");
     }
 }
+
