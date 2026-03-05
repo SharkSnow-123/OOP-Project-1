@@ -3,9 +3,9 @@ class Showtime {
     private Cinema cinema;
     private String movieStart;
     private int totalSeats;
-    private Seat[] bookedSeats; 
+    private Seat[] bookedSeats;
     private int bookedCount;
-    
+
     public Showtime(Movie movie, Cinema cinema, String movieStart, int totalSeats) {
         this.movie = movie;
         this.cinema = cinema;
@@ -14,7 +14,7 @@ class Showtime {
         this.bookedSeats = new Seat[totalSeats];
         this.bookedCount = 0;
     }
-    
+
     public boolean bookSeat(Seat seat) {
         if (bookedCount < totalSeats) {
             bookedSeats[bookedCount] = seat;
@@ -23,23 +23,25 @@ class Showtime {
         }
         return false;
     }
-    
+
     public int availableSeats() {
         return totalSeats - bookedCount;
     }
-    
-    public Movie getMovie() { 
+
+    public Movie getMovie() {
         return movie;
     }
+
     public Cinema getCinema() {
         return cinema;
     }
-    public String getMovieStart() { 
-        return movieStart; 
+
+    public String getMovieStart() {
+        return movieStart;
     }
-    
+
     public String toString() {
-        return "->" + movieStart + " - " + cinema.getName() + " (" + 
-               availableSeats() + " seats lef)";
+        return "->" + movieStart + " - " + cinema.getName() + " (" +
+                availableSeats() + " seats lef)";
     }
 }
