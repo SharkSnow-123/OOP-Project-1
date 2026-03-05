@@ -28,15 +28,15 @@ class Main {
 
         switch (choice) {
             case 1:
-                currentUser = new Customer("1000", "Careza");
+                currentUser = new Customer("Careza");
                 break;
 
             case 2:
-                currentUser = new Cashier("2000", "Cyrus");
+                currentUser = new Cashier("Cyrus");
                 break;
 
             case 3:
-                currentUser = new Admin("3000", "Dirk");
+                currentUser = new Admin("Dirk");
                 break;
 
             case 4:
