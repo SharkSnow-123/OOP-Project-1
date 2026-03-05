@@ -15,7 +15,7 @@ class Main {
         User currentUser = null;
 
         System.out.println("=================================================================");
-        System.out.println("                    DIRK PERSONAL AWESOME THEATRE              ");
+        System.out.println("                    CREZA PERSONAL AWESOME THEATRE              ");
         System.out.println("=================================================================");
         System.out.println("What type of user are you? ");
         System.out.println("1. Customer \t (Book your own tickets)");
