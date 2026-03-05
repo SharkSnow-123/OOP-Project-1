@@ -6,10 +6,20 @@ abstract class User {
 
     User(String id, String name) {
         this.id = id;
+        setName(name);
+    }
+
+    // Setter
+    public void setName(String name) {
         this.name = name;
     }
 
     public abstract void displayMenu();
+
+    // Getter for the name
+    public String getName() {
+        return name;
+    }
 
 }
 

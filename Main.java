@@ -31,10 +31,6 @@ class Main {
                 currentUser = new Customer("1000", "Careza");
                 break;
 
-            case 2:
-                currentUser = new Cashier("2000", "Cyrus");
-                break;
-
             case 3:
                 currentUser = new Admin("3000", "Dirk");
                 break;
@@ -48,7 +44,7 @@ class Main {
         }
 
         if (currentUser != null) {
-            System.out.println("Login Successful as " + choice);
+            System.out.println("Login Successful as " + currentUser.getName());
             currentUser.displayMenu();
         }
 
