@@ -8,40 +8,52 @@ class Main {
 
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+
+        int choice;
+
+        User currentUser = null;
+
+        System.out.println("=================================================================");
+        System.out.println("                    DIRK PERSONAL AWESOME THEATRE              ");
+        System.out.println("=================================================================");
+        System.out.println("What type of user are you? ");
+        System.out.println("1. Customer \t (Book your own tickets)");
+        System.out.println("2. Cashier \t (Book for customers)");
+        System.out.println("3. Admin \t (View Reports)");
+        System.out.println("4. Exit: ");
+
+        System.out.print("Enter Choice: ");
+        choice = sc.nextInt();
+
+        switch (choice) {
+            case 1:
+                currentUser = new Customer("1000", "Careza");
+                break;
+
+            case 2:
+                currentUser = new Cashier("2000", "Cyrus");
+                break;
+
+            case 3:
+                currentUser = new Admin("3000", "Dirk");
+                break;
+
+            case 4:
+                System.out.println("Shutting Down...");
+                System.exit(0);
+
+            default:
+                System.out.println("Invalid Choice!");
+        }
+
+        if (currentUser != null) {
+            System.out.println("Login Successful as " + choice);
+            currentUser.displayMenu();
+        }
+
+        sc.close();
+
     }
-
-}
-
-abstract class User {
-
-    private String id;
-    private String name;
-    private String email;
-
-    User(String id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-
-    public abstract void displayMenu();
-
-}
-
-class Customer extends User {
-
-    public Customer(String id, String name, String email) {
-        super(id, name, email);
-    }
-
-    @Override
-    public void displayMenu() {
-        System.out.println("--- Customer Menu ---");
-        System.out.println("1. View Movies");
-        System.out.println("2. Book a Ticket");
-        System.out.println("3. My History");
-    }
-
-    // public void makeBooking();
 
 }
