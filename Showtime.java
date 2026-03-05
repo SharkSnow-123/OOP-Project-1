@@ -6,6 +6,13 @@ class Showtime {
     private Seat[] bookedSeats;
     private int bookedCount;
 
+    public Showtime() {
+        this.movieStart = "TBA";
+        this.totalSeats = 40; 
+        this.bookedSeats = new Seat[40];
+        this.bookedCount = 0;
+    }
+
     public Showtime(Movie movie, Cinema cinema, String movieStart, int totalSeats) {
         this.movie = movie;
         this.cinema = cinema;
@@ -40,8 +47,9 @@ class Showtime {
         return movieStart;
     }
 
+    @Override
     public String toString() {
-        return "->" + movieStart + " - " + cinema.getName() + " (" +
-                availableSeats() + " seats lef)";
+        return "->" + movieStart + " - " + (cinema != null ? cinema.getName() : "TBA") + " (" +
+                availableSeats() + " seats left)";
     }
 }

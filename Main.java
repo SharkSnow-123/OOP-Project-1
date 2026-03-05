@@ -2,58 +2,70 @@
 //Guys use lang to og camel case sa naming
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
-class Main {
-
+public class Main {
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
+        
+        Showtime currentShowtime = new Showtime(); 
+        SalesReport dailyReport = new SalesReport("2026-03-05");
+        
+        boolean isRunning = true;
 
-        int choice;
+        while (isRunning) {
+            System.out.println("\n=================================================================");
+            System.out.println("                    CREZA PERSONAL AWESOME THEATRE               ");
+            System.out.println("=================================================================");
+            System.out.println("What type of user are you? ");
+            System.out.println("1. Customer \t (Book your own tickets)");
+            System.out.println("2. Cashier \t (Book for customers)");
+            System.out.println("3. Admin \t (View Reports)");
+            System.out.println("4. Exit: ");
 
-        User currentUser = null;
+            System.out.print("Enter Choice: ");
+            int choice = sc.nextInt();
+            User currentUser = null;
 
-        System.out.println("=================================================================");
-        System.out.println("                    CREZA PERSONAL AWESOME THEATRE              ");
-        System.out.println("=================================================================");
-        System.out.println("What type of user are you? ");
-        System.out.println("1. Customer \t (Book your own tickets)");
-        System.out.println("2. Cashier \t (Book for customers)");
-        System.out.println("3. Admin \t (View Reports)");
-        System.out.println("4. Exit: ");
+            switch (choice) {
+                case 1:
+                    currentUser = new Customer("Careza", "C101");
+                    break;
+                case 2:
+                    currentUser = new Cashier("Cyrus", "E101");
+                    break;
+                case 3:
+                    currentUser = new Admin("Dirk", "A001");
+                    break;
+                case 4:
+                    System.out.println("Shutting Down...");
+                    isRunning = false;
+                    break;
+                default:
+                    System.out.println("Invalid Choice!");
+            }
 
-        System.out.print("Enter Choice: ");
-        choice = sc.nextInt();
+            if (currentUser != null) {
+                
+                boolean inSubMenu = true;
+                while (inSubMenu) {
 
-        switch (choice) {
-            case 1:
-                currentUser = new Customer("Careza");
-                break;
+                    currentUser.displayMenu(); 
+                    System.out.print("Enter Action: ");
+                    int action = sc.nextInt();
 
-            case 2:
-                currentUser = new Cashier("Cyrus", "E101");
-                break;
+                    if (action == 4) {
 
-            case 3:
-                currentUser = new Admin("Dirk");
-                break;
+                        inSubMenu = false; 
 
-            case 4:
-                System.out.println("Shutting Down...");
-                System.exit(0);
-
-            default:
-                System.out.println("Invalid Choice!");
+                    }else {
+            
+                        if (currentUser instanceof Cashier) {
+                            ((Cashier) currentUser).handleMenu(action, dailyReport, currentShowtime);
+                        }
+                    }
+                }
+            }
         }
-
-        if (currentUser != null) {
-            System.out.println("Login Successful as " + choice);
-            currentUser.displayMenu();
-        }
-
         sc.close();
-
     }
-
 }

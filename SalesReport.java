@@ -14,6 +14,11 @@ public class SalesReport {
         this.ticketsSold++;
     }
 
+    public void addSale(double price) {
+        this.totalRevenue += price;
+        this.ticketsSold++;
+    }
+
     public void displayDailyReport() {
         System.out.println("\n=====================================");
         System.out.println("DAILY REPORT (" + reportDate + ")");
