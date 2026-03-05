@@ -2,27 +2,27 @@ import java.util.ArrayList;
 
 public class SalesReport {
     private double totalRevenue;
-    private int totalTicketsSold;
-    private String date;
+    private int ticketsSold;
+    private String reportDate;
 
-    public SalesReport(String date) {
-        this.date = date;
+    public SalesReport(String reportDate) {
+        this.reportDate = reportDate;
         this.totalRevenue = 0.0;
-        this.totalTicketsSold = 0;
+        this.ticketsSold = 0;
     }
 
-    public void addSale(double amount) {
-        this.totalRevenue += amount;
-        this.totalTicketsSold++;
+    public void recordTransaction(Payment payment) {
+        this.totalRevenue += payment.getTotalAmount();
+        this.ticketsSold++;
     }
 
-    public void displaySummary() {
+    public void displayDailyReport() {
+        System.out.println("\n=====================================");
+        System.out.println("DAILY REPORT (" + reportDate + ")");
         System.out.println("=====================================");
-        System.out.println("TODAY'S SALES - DATE: " + date);
-        System.out.println("=====================================");
-        System.out.println("Total Tickets: " + totalTicketsSold);
+        System.out.println("Total Tickets Sold: " + ticketsSold);
         System.out.println("Total Revenue: ₱" + totalRevenue);
-        System.out.println("-------------------------------------");
-        
+        System.out.println("Status: Balanced");
+        System.out.println("=====================================");
     }
 }

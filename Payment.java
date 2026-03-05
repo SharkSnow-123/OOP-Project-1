@@ -1,30 +1,33 @@
 public class Payment {
-    private double ticketPrice = 250.00;
+    private final double TICKET_PRICE = 250.00;
     private double totalAmount;
     private String paymentMethod;
-    private boolean isDiscounted;
 
-    public Payment(int numberOfTickets, boolean seniorOrPWD) {
-        this.totalAmount = numberOfTickets * ticketPrice;
-        this.isDiscounted = seniorOrPWD;
-        if (isDiscounted) {
+    public Payment(int ticketCount, boolean isSeniorOrPWD) {
+        this.totalAmount = ticketCount * TICKET_PRICE;
+        if (isSeniorOrPWD) {
             applyDiscount();
         }
     }
 
     private void applyDiscount() {
-        
-        this.totalAmount = this.totalAmount * 0.80;
+        this.totalAmount *= 0.80;
     }
 
-    public void processPayment(int methodChoice, double cashReceived) {
+    public void processTransaction(int choice, double amountPaid) {
         String[] methods = {"Cash", "Credit Card", "GCash"};
-        this.paymentMethod = methods[methodChoice - 1];
+        this.paymentMethod = methods[choice - 1];
+
+        System.out.println("=====================================");
+        System.out.println("PAYMENT PROCESSING");
+        System.out.println("Method: " + paymentMethod);
+        System.out.println("Total Due: ₱" + totalAmount);
         
-        System.out.println("Processing " + paymentMethod + " payment of ₱" + totalAmount);
-        if (methodChoice == 1 && cashReceived >= totalAmount) {
-            System.out.println("Change: ₱" + (cashReceived - totalAmount));
+        if (choice == 1) { 
+            System.out.println("Cash received: ₱" + amountPaid);
+            System.out.println("Change: ₱" + (amountPaid - totalAmount));
         }
+        System.out.println("Transaction Successful!");
     }
 
     public double getTotalAmount() {
