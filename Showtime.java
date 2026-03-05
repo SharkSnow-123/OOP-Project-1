@@ -22,14 +22,47 @@ class Showtime {
         this.bookedCount = 0;
     }
 
-    public boolean bookSeat(Seat seat) {
+    public boolean bookSeat() {
         if (bookedCount < totalSeats) {
-            bookedSeats[bookedCount] = seat;
+            String assignedNumber = String.valueOf(bookedCount + 1);
+            Seat newSeat = new Seat(assignedNumber);
+            newSeat.bookSeat();
+            bookedSeats[bookedCount] = newSeat;
             bookedCount++;
             return true;
         }
         return false;
     }
+
+    public void displaySeats() {
+        System.out.println("\n--- Seat Availability ---");
+        
+        for (int i = 1; i <= totalSeats; i++) {
+            if (i <= bookedCount) {
+                System.out.print("[X]\t");
+            } else {
+                System.out.print("[" + i + "]\t");
+            }
+            
+            if (i % 10 == 0) {
+                System.out.println();
+            }
+        }
+        
+        int available = totalSeats - bookedCount;
+        System.out.println("\nAvailable Seats: " + available + " out of " + totalSeats);
+    }
+
+        public Seat[] getBookedSeats(){
+
+            return bookedSeats;
+        }
+
+        public int getBookedCount(){
+
+            return bookedCount;
+        }
+
 
     public int availableSeats() {
         return totalSeats - bookedCount;

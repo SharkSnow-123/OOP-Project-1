@@ -23,8 +23,8 @@ class Customer extends User {
 
     @Override
     public void displayMenu() {
-        System.out.println("1. View Movies & Showtimes");
-        System.out.println("2. Book Tickets");
+        System.out.println("\n1. View Movies & Showtimes");
+        System.out.println("2. Book a Ticket");
         System.out.println("3. View Available Seats");
         System.out.println("4. Back to Main");
     }

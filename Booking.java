@@ -67,7 +67,7 @@ public class Booking {
     }
 
     public void confirmBooking() {
-        System.out.println("Booking confirmed for " + customerName);
-        System.out.println("Total Amount: ₱" + totalAmount);
+        System.out.println("\t--Booking confirmed for " + customerName);
+        System.out.println("\t--Total Amount: ₱" + totalAmount + "\n");
     }
 }
