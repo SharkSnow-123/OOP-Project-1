@@ -10,73 +10,56 @@ public class Cashier extends User {
 
     @Override
     public void displayMenu() {
-        System.out.println("\n=====================================");
-        System.out.println("CASHIER: " + getName().toUpperCase());
-        System.out.println("ID: " + employeeID);
-        System.out.println("=====================================");
+        System.out.println("\n--- CASHIER: " + getName().toUpperCase() + " (ID: " + employeeID + ") ---");
         System.out.println("1. Process Customer Booking");
         System.out.println("2. Quick Book");
         System.out.println("3. View Today's Sales");
         System.out.println("4. Back to Main");
     }
 
-    public void handleMenu(int choice, SalesReport report, Showtime showtime, Scanner sc) {
-        //Scanner sc = new Scanner(System.in);
-        double ticketPrice = 350.00; 
+    public void handleMenu(int choice, SalesReport report, Showtime[] movieList, Showtime currentShow, Scanner sc) {
+        double basePrice = 350.00; 
 
         switch (choice) {
             case 1:
-                System.out.println("\n--- PROCESSING CUSTOMER BOOKING ---");
-                if (showtime == null || showtime.getMovieStart().equals("TBA")) {
-                    System.out.println("Error: There is no show currently scheduled.");
-                } 
-                else if (showtime.availableSeats() <= 0) {
-                    System.out.println("Status: SOLD OUT! No seats available for " + showtime.getMovieStart());
-                } 
-                else {
-                    System.out.println("Show: " + showtime.getMovieStart());
-                    System.out.println("Seats Available: " + showtime.availableSeats());
-                    System.out.print("Enter seat number to book: ");
-                    sc.next(); 
+                if (movieList != null && movieList.length > 0) {
+                    System.out.print("Select Movie (1-" + movieList.length + "): ");
+                    int mIndex = sc.nextInt() - 1;
                     
-                    report.addSale(ticketPrice); 
-                    System.out.println("Booking successful for " + showtime.getMovieStart());
-                }
-                break;
-
-            case 2:
-                System.out.println("\n--- QUICK BOOK: ONGOING SHOWS ---");
-                if (showtime == null || showtime.getMovieStart().equals("TBA")) {
-                    System.out.println("Status: No ongoing shows found.");
-                } 
-                else {
-                    System.out.println("Current Show: " + showtime.toString());
-                    
-                    if (showtime.availableSeats() <= 0) {
-                        System.out.println("Result: This show is SOLD OUT. Cannot quick book.");
-                    } else {
-                        System.out.print("Proceed with Quick Book for 1 seat? (Y/N): ");
-                        String confirm = sc.next();
+                    if (mIndex >= 0 && mIndex < movieList.length) {
+                        System.out.print("Senior/PWD Discount? (1: Yes, 0: No): ");
+                        double price = (sc.nextInt() == 1) ? basePrice * 0.8 : basePrice;
                         
-                        if (confirm.equalsIgnoreCase("Y")) {
-                            report.addSale(ticketPrice);
-                            System.out.println("Success! 1 Ticket issued for " + showtime.getMovieStart());
+                        if (movieList[mIndex].bookSeat()) {
+                            report.addSale(price); 
+                            System.out.println("Success! Total: P" + price);
                         }
                     }
                 }
                 break;
-
+            case 2:
+                System.out.println("\n--- QUICK BOOK: ONGOING SHOWS ---");
+                if (movieList != null && movieList.length > 0) {
+                    Showtime ongoing = movieList[0]; 
+                    System.out.print("Proceed with Quick Book for 1 seat? (Y/N): ");
+                    if (sc.next().equalsIgnoreCase("Y")) {
+                        if (ongoing.bookSeat()) {
+                            report.addSale(basePrice); 
+                            System.out.println("Success! Ticket issued for " + ongoing.getMovie().getTitle());
+                        } else {
+                            System.out.println("FAILED: The theater for " + ongoing.getMovie().getTitle() + " is full!");
+                        }
+                    } else {
+                        System.out.println("Quick Book cancelled.");
+                    }
+                } else {
+                    
+                    System.out.println("Error: No movies are currently loaded in the system.");
+                }
+                break;
             case 3:
                 report.displayDailyReport();
                 break;
-
-            case 4:
-                System.out.println("Returning to main menu...");
-                break;
-
-            default:
-                System.out.println("Invalid option.");
         }
-    
     }
 }

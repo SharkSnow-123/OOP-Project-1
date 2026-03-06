@@ -21,7 +21,6 @@ public abstract class User {
 /////////////////////////////////////////////////////////////////////////////////////
 
 class Customer extends User {
-
     private boolean isSeniorOrPWD;
 
     public Customer(String name, boolean isSeniorOrPWD) {
@@ -29,9 +28,14 @@ class Customer extends User {
         this.isSeniorOrPWD = isSeniorOrPWD;
     }
 
+    public boolean isSeniorOrPWD() {
+        return isSeniorOrPWD;
+    }
+
     @Override
     public void displayMenu() {
-        System.out.println("\n1. View Movies & Showtimes");
+        System.out.println("\n--- CUSTOMER MENU: " + getName().toUpperCase() + " ---");
+        System.out.println("1. View Movies & Showtimes");
         System.out.println("2. Book a Ticket");
         System.out.println("3. View Available Seats");
         System.out.println("4. Back to Main");

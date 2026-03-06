@@ -35,9 +35,8 @@ public class SalesReport {
         System.out.println("DAILY REPORT (" + reportDate + ")");
         System.out.println("=====================================");
         System.out.println("Total Tickets Sold: " + ticketsSold);
-        System.out.println("Total Revenue: ₱" + totalRevenue);
+        System.out.println("Total Revenue: PHP" + totalRevenue);
         System.out.println("Status: Balanced");
         System.out.println("=====================================");
     }
 }
-
